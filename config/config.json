@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "booshare_development",
+    "database": "booshare_development2",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
