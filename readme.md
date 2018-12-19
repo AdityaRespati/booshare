@@ -15,7 +15,7 @@ Wajib session
 -saat sign in pastikan usename & password match atau username terdaftar. bila false buat notifikasi ('incorrect username/password)
 
 #release 1
-- login, logout
+- login, logout.
 
 
 -buat partials navbar berisi home, search, filter(drop down berdasarkan genre), sort
