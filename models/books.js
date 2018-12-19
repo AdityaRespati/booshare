@@ -2,10 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   const books = sequelize.define('books', {
     title: DataTypes.STRING,
-    authorName: DataTypes.STRING
+    authorName: DataTypes.STRING,
+    GenreId: DataTypes.INTEGER
   }, {});
   books.associate = function(models) {
-    // associations can be defined here
+    books.belongsTo(models.genre);
   };
   return books;
 };
