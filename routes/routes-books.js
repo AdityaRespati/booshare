@@ -11,11 +11,14 @@ router.get('/', (req, res) =>{
     res.render('allBooks.ejs', {
       data: data
     })
-    // res.send(data);
   })
   .catch(err => {
     res.send(err);
   })
+})
+
+router.get('/admin', (req, res) => {
+  Model.Books.update()
 })
 
 
