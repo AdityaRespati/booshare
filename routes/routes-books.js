@@ -4,7 +4,15 @@ const Model = require('../models')
 
 //SHOW ALL BOOKS DATA
 router.get('/', (req, res) =>{
-  res.send('allBooks.ejs')
+  Model.books.findAll()
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.send(err);
+  })
+  // res.render('allBooks.ejs')
 })
+
 
 module.exports = router

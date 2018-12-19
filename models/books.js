@@ -6,7 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     GenreId: DataTypes.INTEGER
   }, {});
   books.associate = function(models) {
-    books.belongsTo(models.genre);
+    books.belongsTo(models.genre, {
+      foreignKey: "GenreId"
+    });
   };
   return books;
 };
