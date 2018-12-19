@@ -25,6 +25,10 @@ router.get('/:id/addBook', (req, res)=>{
   .findAll()
   .then(dataGenre =>{
     res.render('addBook.ejs', {dataGenre})
+    // res.send(dataGenre)
+  })
+  .catch(err =>{
+    res.send(err)
   })
 })
 
@@ -35,10 +39,12 @@ router.post('/:id/addBook', (req, res)=>{
     GenreId: req.body.GenreId
   }
 
+  // res.send(objBooks)
+
   Model.books
   .create(objBooks)
   .then(dataBook =>{
-    res.redirect('/home/:id')
+    res.redirect('/books')
   })
   .catch(err =>{
     res.send(err)
