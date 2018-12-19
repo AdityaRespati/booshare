@@ -4,14 +4,18 @@ const Model = require('../models')
 
 //SHOW ALL BOOKS DATA
 router.get('/', (req, res) =>{
-  Model.books.findAll()
+  Model.books.findAll({
+    // include: {model: Model.genres}
+  })
   .then(data => {
-    res.send(data);
+    res.render('allBooks.ejs', {
+      data: data
+    })
+    // res.send(data);
   })
   .catch(err => {
     res.send(err);
   })
-  // res.render('allBooks.ejs')
 })
 
 
