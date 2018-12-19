@@ -15,6 +15,10 @@ app.use('/user', user)
 app.use('/book', book)
 app.use('/genre', genre)
 
+app.use('/', (req, res) => {
+  res.render('landingPage.ejs');
+})
+
 
 app.listen(3000, ()=>{
   console.log('server is listening on port 3000....');
