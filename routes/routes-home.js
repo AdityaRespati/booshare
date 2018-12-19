@@ -28,5 +28,23 @@ router.get('/:id/addBook', (req, res)=>{
   })
 })
 
+router.post('/:id/addBook', (req, res)=>{
+  let objBooks = {
+    title: req.body.title,
+    authorName: req.body.authorName,
+    GenreId: req.body.GenreId
+  }
+
+  Model.books
+  .create(objBooks)
+  .then(dataBook =>{
+    res.redirect('/home/:id')
+  })
+  .catch(err =>{
+    res.send(err)
+    console.log(err);
+  })
+})
+
 
 module.exports = router
