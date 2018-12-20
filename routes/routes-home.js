@@ -3,7 +3,7 @@ const router = express.Router()
 const Model = require('../models')
 
 router.get('/', (req, res) =>{
-  res.render('landingPage.ejs')
+  res.send('home')
 })
 
 router.get('/:id', (req,res) =>{
