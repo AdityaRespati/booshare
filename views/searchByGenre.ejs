@@ -39,8 +39,10 @@
   
 </style>
 
+
 <body>
   <%- include partials/navbar.ejs %>
+  <% if (data !== null) { %>
   <h1><%= data.genreName %></h1>
   <table class="table">
     <thead>
@@ -51,13 +53,18 @@
       </tr>
     </thead>
     <tbody>
+      
         <% data.books.forEach(e => { %>
           <tr>
-              <td><a href=""><%= e.title %></a></td>
+              <td><%= e.title %></a></td>
               <td><%= e.authorName %></td>
               <td><a href="/home/1">READ NOW</a></td>
             </tr>
         <% }) %>
+     <% } else { %>
+      <br>
+        <h1><%=err%></h1>
+     <% } %>
         
     </tbody>
   </table>
