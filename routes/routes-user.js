@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const hash = require('../helpers/hash')
 
-router.get('/', (req, res) =>{
+router.get('/', (req, res) => {
   res.send('all user data')
 })
 
@@ -16,48 +17,39 @@ router.post('/register', (req, res) => {
     secret: req.body.secret
   }
   Model.user.create(obj)
-  .then(data => {
-    res.redirect(`/home/${data.id}`);
-  })
-  .catch(err => {
-    res.send(err);
-  })
+    .then(data => {
+      res.redirect(`/home/${data.id}`);
+    })
+    .catch(err => {
+      res.send(err);
+    })
 })
 
 //LOGIN USER
 router.post('/login', (req, res) => {
-  let userLogin = req.body
-  let userData = null
-  Model.user
-  .findOne({where: {username: userLogin.username}})
-  .then((usernameChecking) => {
-      if (!usernameChecking) {
-          throw 'Username Tidak Ditemukan'
-      } else {
-          userData = usernameChecking
-          let syncPassWithHash = syncPassword(req.body.password, userData.secret)
-          return Model.user.findOne({
-              where: {password: syncPassWithHash}
-          })
-      }
+  Model.user.findOne({
+    where: { username: req.body.username }
   })
-  .then(passwordChecking => {
-      if (passwordChecking === null) {
-          throw 'Password Salah'
+    .then((userData) => {
+      if (!userData) {
+        throw 'Username Tidak Ditemukan'
       } else {
+        let passHash = hash(req.body.password, userData.secret)
+        if (passHash.hash === userData.password) {
           req.session.user = {
-              id: passwordChecking.id,
-              username: passwordChecking.username,
-              membership: passwordChecking.membership,
-              balance: passwordChecking.balance
+            id: userData.id,
+            username: userData.username,
           }
-              res.redirect('/')
+          res.redirect('/home')
+          // res.send(req.session)
+        } else {
+          throw 'Password Salah'
+        }
       }
-  })
-
-  .catch((err) => {
+    })
+    .catch((err) => {
       res.redirect(`/login?error=${err}`)
-  })
+    })
 })
 
 
