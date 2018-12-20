@@ -31,27 +31,6 @@ router.get('/', function(req, res) {
             res.send(err);
           })
 })
-// router.get('/', function (req, res, next) {
-//   if (req.session.user.id !== null) {
-//     let data = null
-//     Model.books.findAll({
-//       include: [Model.genre]
-//     })
-//       .then(data => {
-//         res.render('allBooks.ejs', {
-//           data: data
-//         })
-//       })
-//       .catch(err => {
-//         console.log(err, 'masuk kesini dia')
-//         res.send(err);
-//       })
-//   } else {
-//     next()
-//   }
-// }, function (req, res, next) {
-//   res.redirect('/register')
-// })
 
 //SEARCH BY GENRE
 router.post('/:id/searchQuery', (req, res) => {
