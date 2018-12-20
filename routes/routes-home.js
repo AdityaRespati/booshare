@@ -20,6 +20,15 @@ router.get('/:id', (req,res) =>{
   })
 })
 
+router.post('/:id', (req, res) =>{
+  let readinglist = {
+    UserId: req.params.id
+  }
+
+  Model.userbook
+  .create()
+})
+
 router.get('/:id/addBook', (req, res)=>{
   Model.genre
   .findAll()
@@ -53,6 +62,7 @@ router.post('/:id/addBook', (req, res)=>{
 })
 
 //REGISTER
-
+// app.get('/home/addBook/:bookId', middleware, res.red)
+//   res.redirect('/home/req.session.user.id')
 
 module.exports = router

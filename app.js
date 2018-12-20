@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express ()
+// const cookieParser = require('cookie-parser')
 const session = require('express-session')
 
 const user = require('./routes/routes-user')
@@ -20,6 +21,11 @@ app.use('/genre', genre)
 app.use('/', (req, res) => {
   res.render('landingPage.ejs');
 })
+
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'booshare'
+}))
 
 
 app.listen(3000, ()=>{
