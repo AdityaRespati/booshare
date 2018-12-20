@@ -1,22 +1,12 @@
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-  
-  <nav class="navbar navbar-default">
-    <h1></h1>
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/home">Home</a></li>
-        <li><a href="/book">Books</a></li>
-
-        <li><select><option>test</option></select></li>
-        <li><a href="#">search test</a></li>
-      </ul>
+    
+    <div class="topnav">
+      <a class="active" href="/home">Home</a>
+      <a href="/book">Books</a>
+      <a href="/genre">Genre</a>
+      <div class="search-container">
+        <form action="/book/:id/searchQuery" method="POST">
+          <input type="text" placeholder="Search.." name="search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
     </div>
-  </nav>
-  </body>
