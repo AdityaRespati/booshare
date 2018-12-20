@@ -10,8 +10,22 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "GenreId"
     });
 
-    books.belongsToMany(models.user, {through: models.userbook })
+    books.belongsToMany(models.user, {through: models.userbook, foreignKey: 'BookId' })
 
   };
+
+  books.findBooks = function(genreId) {
+    books.findAll({
+      where: {GenreId: genreId}
+    })
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  }
+
+
   return books;
 };
