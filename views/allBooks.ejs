@@ -44,7 +44,6 @@
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">TITLE</th>
         <th scope="col">AUTHOR NAME</th>
         <th scope="col">GENRE</th>
@@ -54,10 +53,10 @@
     <tbody>
         <% data.forEach(e => { %>
           <tr>
-              <th scope="row"><%= e.id %></th>
               <td><a href=""><%= e.title %></a></td>
               <td><%= e.authorName %></td>
-              <td>null</td>
+              <td><%= e.genre.genreName %></td>
+              <td><a href="">READ NOW</a></td>
             </tr>
         <% }) %>
         
