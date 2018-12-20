@@ -17,11 +17,16 @@ router.post('/register', (req, res) => {
   }
   Model.user.create(obj)
   .then(data => {
-    res.redirect('/home');
+    res.redirect(`/home/${data.id}`);
   })
   .catch(err => {
     res.send(err);
   })
+})
+
+//LOGIN USER
+router.post('/login', (req, res) => {
+  
 })
 
 module.exports = router

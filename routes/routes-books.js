@@ -4,8 +4,9 @@ const Model = require('../models')
 
 //SHOW ALL BOOKS DATA
 router.get('/', (req, res) =>{
+  let data = null
   Model.books.findAll({
-    // include: {model: Model.genres}
+    include: [ Model.genre ]
   })
   .then(data => {
     res.render('allBooks.ejs', {
@@ -13,6 +14,7 @@ router.get('/', (req, res) =>{
     })
   })
   .catch(err => {
+    console.log(err, 'masuk kesini dia')
     res.send(err);
   })
 })
