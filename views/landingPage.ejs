@@ -4,14 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include partials/formCSS.ejs %> 
-    <%- include partials/navbarStyle.ejs %>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">     
-    <title>Document</title>
+    <title>Landing Page</title>
   </head>
   <body>
 <div class="jumbotron container">
   <h1 class="text-center">BooShare inc.</h1> 
-  <p class="text-center">Welcome to BooShare.</p> 
+  <p class="text-center">E-BOOK Sharing Website </p> 
 </div>
 
 <div>
@@ -29,22 +28,11 @@
   
     <input type="submit" value="Submit">
   </form>
+
+  <br>
+  <h3> Have account? <a href="/user/login">LOGIN</a></h3>
 </div>
 <br>
-<div>
-  <h2> LOGIN </h2>
-  <form action="/user/login" method="POST">
-    
-    <label for="lname">Username</label>
-    <input type="text" id="username" name="username" placeholder="Your username..">
-
-    <label for="fname">Password</label>
-    <input type="text" id="password" name="password" placeholder="password..">
-  
-    <input type="submit" value="Submit">
-  </form>
-</div>
-
 
 <div class="footer">
   <%- include partials/footer.ejs %>

@@ -4,24 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>Login Page</title>
+  <%- include partials/formCSS.ejs %> 
 </head>
 <body>
-    <div>
-        <h2> LOGIN </h2>
-        <form action="/user/login" method="POST">
-          
-          <label for="lname">Username</label>
-          <input type="text" id="username" name="username" placeholder="Your username..">
-      
-          <label for="country">Email</label>
-          <input type="text" id="email" name="email" placeholder="email..">
-      
-          <label for="fname">Password</label>
-          <input type="text" id="password" name="password" placeholder="password..">
-        
-          <input type="submit" value="Submit">
-        </form>
-      </div>
+  <div>
+  <h2>LOGIN</h2><br>
+  <form action="/user/login" method="POST">
+    
+    <label for="lname">Username</label>
+    <input type="text" id="username" name="username" placeholder="Your username..">
+
+    <label for="fname">Password</label>
+    <input type="text" id="password" name="password" placeholder="password..">
+  
+    <input type="submit" value="Submit">
+  </form>
+</div>
 </body>
 </html>

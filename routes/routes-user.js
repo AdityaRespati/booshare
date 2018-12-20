@@ -26,9 +26,14 @@ router.post('/register', (req, res) => {
 })
 
 //LOGIN USER
+
+router.get ('/login', (req, res) => {
+  res.render('login.ejs');
+})
+
 router.post('/login', (req, res) => {
   Model.user.findOne({
-    where: { username: req.body.username }
+    where: { username: req.body.username}
   })
     .then((userData) => {
       if (!userData) {
@@ -41,7 +46,6 @@ router.post('/login', (req, res) => {
             username: userData.username,
           }
           res.redirect('/home')
-          // res.send(req.session)
         } else {
           throw 'Password Salah'
         }
