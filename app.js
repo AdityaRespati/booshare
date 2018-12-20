@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express ()
+const session = require('express-session')
 
 const user = require('./routes/routes-user')
 const book = require('./routes/routes-books')
@@ -9,6 +10,7 @@ const home = require('./routes/routes-home')
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+// app.use(session)
 
 app.use('/home', home)
 app.use('/user', user)
