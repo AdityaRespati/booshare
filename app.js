@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express ()
 const session = require('express-session')
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+// var multer  = require('multer')
+// var upload = multer({ dest: 'uploads/' })
 
 const user = require('./routes/routes-user')
 const book = require('./routes/routes-books')
@@ -23,7 +23,9 @@ app.use('/book', book)
 app.use('/genre', genre)
 
 app.use('/', (req, res) => {
-  res.render('landingPage.ejs');
+  res.render('landingPage.ejs', {
+    err: null
+  });
 })
 
 

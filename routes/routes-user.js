@@ -9,6 +9,13 @@ router.get('/', (req, res) => {
 
 
 //REGISTER USER
+router.get('/register', (req,res) => {
+  let err = req.query.error
+  res.render('landingPage.ejs', {
+    err: err || null
+  })
+})
+
 router.post('/register', (req, res) => {
   let obj = {
     username: req.body.username,
@@ -18,17 +25,19 @@ router.post('/register', (req, res) => {
   }
   Model.user.create(obj)
     .then(data => {
-      res.redirect(`/home/${data.id}`);
+      res.redirect(`/home`);
     })
     .catch(err => {
-      res.send(err);
+      res.redirect(`/user/register/?error=${err.errors[0].message}`);
     })
 })
 
 //LOGIN USER
-
 router.get ('/login', (req, res) => {
-  res.render('login.ejs');
+  let err = req.query.error
+  res.render('login.ejs', {
+    err: err || null
+  });
 })
 
 router.post('/login', (req, res) => {
@@ -45,17 +54,18 @@ router.post('/login', (req, res) => {
             id: userData.id,
             username: userData.username,
           }
-          res.redirect(`/home/${userData.id}`)
+          res.redirect(`/home`)
         } else {
           throw 'Password Salah'
         }
       }
     })
     .catch((err) => {
-      res.redirect(`/login?error=${err}`)
+      res.redirect(`/user/login/?error=${err}`)
     })
 })
 
+//LOGOUT USER
 router.get('/logout', (req,res)=>{
   req.session.destroy(function(err) {
     if (err) {

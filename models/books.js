@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
     books.belongsTo(models.genre, {
       foreignKey: "GenreId"
     });
+
+    books.belongsToMany(models.user, {through: models.userbook })
+
   };
   return books;
 };
