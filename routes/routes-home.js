@@ -46,10 +46,16 @@ router.get('/:id/addBook', (req, res) => {
     })
     .catch(err => {
       res.send(err)
-    })
+    }) 
 })
 
-router.post('/:id/addBook', (req, res) => {
+router.post('/:id/addBook', (req, res, next) => {
+  if (req.session.user) {
+    next()
+  } else {
+    res.redirect('/users/login')
+  }
+}, (req, res) => {
   let objBooks = {
     title: req.body.title,
     authorName: req.body.authorName,

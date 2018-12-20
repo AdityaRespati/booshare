@@ -16,6 +16,8 @@ const upload = multer({ dest: 'uploads/' })
 //   }
 // });
 // var upload = multer({storage: storage});
+
+
 router.get('/upload', (req, res) => {
   res.render('upload.ejs')
 })
@@ -27,27 +29,41 @@ router.post('/upload', upload.single('uploadedFile'), (req, res) => {
 
 
 //SHOW ALL BOOKS DATA
-router.get('/', function (req, res, next) {
-  if (req.session.user.id !== null) {
-    let data = null
-    Model.books.findAll({
-      include: [Model.genre]
-    })
-      .then(data => {
-        res.render('allBooks.ejs', {
-          data: data
+router.get('/', function(req, res) {
+  Model.books.findAll({
+          include: [Model.genre]
         })
-      })
-      .catch(err => {
-        console.log(err, 'masuk kesini dia')
-        res.send(err);
-      })
-  } else {
-    next()
-  }
-}, function (req, res, next) {
-  res.redirect('/register')
+          .then(data => {
+            res.render('allBooks.ejs', {
+              data: data
+            })
+          })
+          .catch(err => {
+            console.log(err, 'masuk kesini dia')
+            res.send(err);
+          })
 })
+// router.get('/', function (req, res, next) {
+//   if (req.session.user.id !== null) {
+//     let data = null
+//     Model.books.findAll({
+//       include: [Model.genre]
+//     })
+//       .then(data => {
+//         res.render('allBooks.ejs', {
+//           data: data
+//         })
+//       })
+//       .catch(err => {
+//         console.log(err, 'masuk kesini dia')
+//         res.send(err);
+//       })
+//   } else {
+//     next()
+//   }
+// }, function (req, res, next) {
+//   res.redirect('/register')
+// })
 
 //SEARCH BY GENRE
 router.post('/:id/searchQuery', (req, res) => {
@@ -124,6 +140,16 @@ router.get('/:id', (req, res) => {
 
 router.get('/admin', (req, res) => {
   Model.Books.update()
+})
+
+router.get('/readNow', function(req, res, next) {
+  if (req.session.user) {
+    next()
+  } else {
+    res.redirect('/user/login')
+  }
+}, function (req, res) {
+  res.send('ini buku')
 })
 
 
