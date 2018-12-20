@@ -14,7 +14,6 @@ app.use(session({
   secret: 'booshare'
 }))
 app.use(express.urlencoded({extended:false}))
-// app.use(session)
 
 app.use('/home', home)
 app.use('/user', user)
@@ -24,9 +23,6 @@ app.use('/genre', genre)
 app.use('/', (req, res) => {
   res.render('landingPage.ejs');
 })
-
-// app.set('trust proxy', 1) // trust first proxy
-
 
 
 app.listen(3000, ()=>{
