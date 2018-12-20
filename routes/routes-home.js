@@ -7,29 +7,25 @@ const uploadMulter = multer().single('book')
 
 router.use(express.static('upload'))
 
-router.get('/', (req, res) =>{
-  res.redirect('/landingPage.ejs')
-})
-
-router.get('/:id', function (req, res, next) {
+router.get('/', function (req, res, next) {
   if (req.session.user) {
    next() 
   } else {
     res.redirect('/user/login')
   }
-},function (req, res, next){
-  res.send("you have to login first")
+},function (req, res){
+  res.render('home.ejs')
 })
 
 
-router.post('/:id', (req, res) => {
-  let readinglist = {
-    UserId: req.params.id
-  }
+// router.post('/:id', (req, res) => {
+//   let readinglist = {
+//     UserId: req.params.id
+//   }
 
-  Model.userbook
-    .create()
-})
+//   Model.userbook
+//     .create()
+// })
 
 router.get('/:id/addBook',  (req, res) => {
   Model.genre

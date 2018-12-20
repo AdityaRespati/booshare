@@ -17,6 +17,10 @@
         <br><br>
       </div>
 
+ <% if(!err) { %>
+  <h1><%= err %></h1>
+<% } %>
+  
   <h2> REGISTER </h2>
   <form action="/user/register" method="POST">
     
