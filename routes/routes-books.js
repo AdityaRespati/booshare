@@ -3,19 +3,7 @@ const router = express.Router()
 const Model = require('../models')
 const session = require('express-session')
 const multer = require('multer');
-//save books in uploads directory
 const upload = multer({ dest: 'uploads/' })
-
-//MULTER
-// var storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/images/uploads')
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.fieldname + '-' + Date.now())
-//   }
-// });
-// var upload = multer({storage: storage});
 
 
 router.get('/upload', (req, res) => {
