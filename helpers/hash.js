@@ -11,5 +11,4 @@ function hash(password, secret) {
 return objHash;
 }
 
-
 module.exports = hash
