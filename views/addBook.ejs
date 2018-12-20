@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Add Book</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <form action = "/:id/addBook" method = "POST" enctype="multipart/form-data">
+    Book Title<br>
+    <input type = "text" name= "title"><br><br>
+    Author<br>
+    <input type = "text" name= "authorName"><br><br>
+    Genre<br>
+    <select name= "GenreId">
+      <% dataGenre.forEach(genre =>{ %>
+        <option value="<%= genre.id %>"><%= genre.genreName%></option>
+      <% }) %>
+    </select><br><br>
+
+    Upload book PDF<br>
+    <input type = "file" name= "book" src=""><br><br>
+    <br>
+    <input type = "submit" value= "submit">
+  </form>
+</body>
+</html>
