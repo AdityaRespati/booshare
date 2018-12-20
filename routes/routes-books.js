@@ -32,22 +32,33 @@ router.get('/',function(req, res) {
 })
 
 //SEARCH BY GENRE
-router.post('/:id/searchQuery', (req, res) => {
+router.get('/searchQuery', (req, res) => {
+  let err = req.query.error
+  res.render('searchByGenre.ejs', {
+    data: null,
+    err: err || null
+  });
+})
+
+router.post('/searchQuery', (req, res) => {
   Model.genre.findOne({
     include: [Model.books],
-    where: { genreName: req.body.search }
+    where: { genreName: req.body.search}
   })
     .then(data => {
+      let err = req.query.error
       if (!data) {
         throw `tidak ada genrenya`
       } else {
         res.render('searchByGenre.ejs', {
           data: data,
+          err: err || null
         });
+        // res.redirect('/book/searchQuery', data)
       }
     })
     .catch(err => {
-      res.redirect(`/book/:id/searchQuery?error=${err}`);
+      res.redirect(`/book/searchQuery/?error=${err}`);
     })
 })
 
