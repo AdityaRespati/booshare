@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express ()
 const session = require('express-session')
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 const user = require('./routes/routes-user')
 const book = require('./routes/routes-books')
