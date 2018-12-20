@@ -3,18 +3,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-    .footer {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        padding: 25px;
-        width: 100%;
-        color: #549DF7;
-        text-align: center;
-        background: white;
-    }
-    </style>  
     <%- include partials/formCSS.ejs %>      
     <title>Document</title>
   </head>
@@ -27,15 +15,16 @@
 
 <div>
   <h2> REGISTER </h2>
-  <form action="/register" method="POST">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+  <form action="/user/register" method="POST">
+    
+    <label for="lname">Username</label>
+    <input type="text" id="username" name="username" placeholder="Your username..">
 
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <label for="country">Email</label>
+    <input type="text" id="email" name="email" placeholder="email..">
 
-    <label for="country">Password</label>
-    <input type="text" id="password" name="password" placeholder="">
+    <label for="fname">Password</label>
+    <input type="text" id="password" name="password" placeholder="password..">
   
     <input type="submit" value="Submit">
   </form>
