@@ -2,8 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Model = require('../models')
 
-router.get('/', (req, res) => {
-  res.send('home')
+
+router.get('/', (req, res) =>{
+  res.redirect('/landingPage.ejs')
 })
 
 router.get('/:id', function (req, res, next) {
