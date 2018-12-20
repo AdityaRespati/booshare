@@ -45,7 +45,7 @@ router.post('/login', (req, res) => {
             id: userData.id,
             username: userData.username,
           }
-          res.redirect('/home')
+          res.redirect(`/home/${userData.id}`)
         } else {
           throw 'Password Salah'
         }
