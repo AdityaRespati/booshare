@@ -3,6 +3,7 @@ const router = express.Router()
 const Model = require('../models')
 const session = require('express-session')
 const multer = require('multer');
+const upload = multer({ dest: 'uploads/' })
 
 
 router.get('/upload', (req, res) => {

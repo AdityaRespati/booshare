@@ -1,7 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' })
+const uploadMulter = multer().single('book')
 
+router.use(express.static('upload'))
 
 router.get('/', (req, res) =>{
   res.redirect('/landingPage.ejs')
@@ -27,7 +31,7 @@ router.post('/:id', (req, res) => {
     .create()
 })
 
-router.get('/:id/addBook', (req, res) => {
+router.get('/:id/addBook',  (req, res) => {
   Model.genre
     .findAll()
     .then(dataGenre => {
@@ -39,25 +43,32 @@ router.get('/:id/addBook', (req, res) => {
     }) 
 })
 
-router.post('/:id/addBook', (req, res, next) => {
+router.post('/:id/addBook', upload.single('book'), 
+(req, res, next) => {
   if (req.session.user) {
     next()
   } else {
     res.redirect('/users/login')
   }
-}, (req, res) => {
+}, 
+(req, res) => {
   let objBooks = {
     title: req.body.title,
     authorName: req.body.authorName,
-    GenreId: req.body.GenreId
+    GenreId: req.body.GenreId,
+    // file: req.file.book,
   }
-
-  // res.send(objBooks)
+  console.log(req.file.book);
+  
+  // // res.send(objBooks)
+  console.log(req.file)
 
   Model.books
     .create(objBooks)
     .then(dataBook => {
       res.redirect('/books')
+      // res.send(req.file)
+      // console.log(req.file)
     })
     .catch(err => {
       res.send(err)
