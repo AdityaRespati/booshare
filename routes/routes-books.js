@@ -3,19 +3,6 @@ const router = express.Router()
 const Model = require('../models')
 const session = require('express-session')
 const multer = require('multer');
-//save books in uploads directory
-const upload = multer({ dest: 'uploads/' })
-
-//MULTER
-// var storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, 'public/images/uploads')
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.fieldname + '-' + Date.now())
-//   }
-// });
-// var upload = multer({storage: storage});
 
 
 router.get('/upload', (req, res) => {
@@ -43,27 +30,6 @@ router.get('/', function(req, res) {
             res.send(err);
           })
 })
-// router.get('/', function (req, res, next) {
-//   if (req.session.user.id !== null) {
-//     let data = null
-//     Model.books.findAll({
-//       include: [Model.genre]
-//     })
-//       .then(data => {
-//         res.render('allBooks.ejs', {
-//           data: data
-//         })
-//       })
-//       .catch(err => {
-//         console.log(err, 'masuk kesini dia')
-//         res.send(err);
-//       })
-//   } else {
-//     next()
-//   }
-// }, function (req, res, next) {
-//   res.redirect('/register')
-// })
 
 //SEARCH BY GENRE
 router.post('/:id/searchQuery', (req, res) => {

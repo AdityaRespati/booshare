@@ -8,21 +8,11 @@ router.get('/', (req, res) =>{
 })
 
 router.get('/:id', function (req, res, next) {
-  if (req.session.user.id !== null) {
-    // console.log(req.session.user)
-    Model.user
-      .findOne({
-        where:
-          { id: req.params.id }
-      })
-      .then(dataUser => {
-        res.render('home.ejs', { dataUser })
-      })
-      .catch(err => {
-        console.log(err);
-        res.send(err)
-      })
-  } else{next()}
+  if (req.session.user) {
+   next() 
+  } else {
+    res.redirect('/user/login')
+  }
 },function (req, res, next){
   res.send("you have to login first")
 })
