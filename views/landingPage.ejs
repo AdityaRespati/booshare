@@ -9,7 +9,7 @@
     <title>Landing Page</title>
   </head>
   <body>
-      <%- include partials/navbar.ejs %>
+      <%- include partials/navbarLogout.ejs %>
 <div class="form">
     <div class="jumbotron container">
         <h1 class="text-center  ">BooShare inc.</h1> 
@@ -19,7 +19,7 @@
 
  <% if(!err) { %>
   <h1><%= err %></h1>
-<% } %>
+ <% } %>
   
   <h2> REGISTER </h2>
   <form action="/user/register" method="POST">

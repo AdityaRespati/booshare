@@ -16,7 +16,7 @@ router.post('/upload', upload.single('uploadedFile'), (req, res) => {
 });
 
 //SHOW ALL BOOKS DATA
-router.get('/', function(req, res) {
+router.get('/',function(req, res) {
   Model.books.findAll({
           include: [Model.genre]
         })
@@ -83,27 +83,17 @@ function(req, res, next) {
   }
 }, 
 function (req, res) {
-  // console.log('==============')
   Model.user.findOne({
     where: {id: req.session.user.id},
     include: { model: Model.books},
    })
     .then(data =>{
-    //   // return Model.books
-    //   // .findAll({
-    //   //   where: {id: data.BookId}
-    //   // })
-      res.send(data);
+      res.render("myBook.ejs", {data: data});
     })
-    // // .then(dataBook =>{
-    // //   console.log(dataBook)
-    // //   res.send(dataBook)
-    // // })
     .catch(err => {
-      res.send(err)
+      res.send(err, "errrr")
     })
 })
-
 
 
 
